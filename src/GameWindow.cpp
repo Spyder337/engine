@@ -1,4 +1,4 @@
-#include <Rendering/GameWindow.hpp>
+#include <GameWindow.hpp>
 
 using namespace std;
 
@@ -15,7 +15,7 @@ void GameWindow::ProcessInput(GLFWwindow* window){
 
 int GameWindow::Start(){
 	glfwInit();
-    m_window = glfwCreateWindow(800, 600, "LearnOpenGL", NULL, NULL);
+    m_window = glfwCreateWindow(m_width, m_height, m_name.c_str(), NULL, NULL);
 	if (m_window == NULL)
 	{
 		std::cout << "Failed to create GLFW window" << std::endl;
@@ -43,10 +43,19 @@ int GameWindow::Start(){
     vertices[7] = 0.5f;
     vertices[8] = 0.0f;
 
+	Transform trans = Transform();
+	ShapeComponent shape = ShapeComponent(vertices, 9, nullptr, 0);
+	ShaderComponent shader = ShaderComponent("Data/shaders/base.vert", "Data/shaders/base.frag");
+	RenderComponent rend = RenderComponent(&shape, &shader);
+	EntitySystem es = EntitySystem();
+	es.AddEntity(trans, rend);
+
 	while (!glfwWindowShouldClose(m_window))
 	{
 		ProcessInput(m_window);
 		glClear(GL_COLOR_BUFFER_BIT);
+
+		es.Update();
 
 		glfwSwapBuffers(m_window);
 		glfwPollEvents();

@@ -1,4 +1,4 @@
-#include <Rendering/ShapeComponent.hpp>
+#include <Components/ShapeComponent.hpp>
 
 ShapeComponent::ShapeComponent(float* verts, int vertCount, int* indices, int indexCount){
     m_vertices = verts;
@@ -7,10 +7,7 @@ ShapeComponent::ShapeComponent(float* verts, int vertCount, int* indices, int in
     m_indexCount = indexCount;
 }
 
-void ShapeComponent::GenAndBindBuffers(unsigned int* vbo, unsigned int* vao, unsigned int* ebo){
-
-}
-
 ShapeComponent::~ShapeComponent(){
-
+    delete m_vertices;
+    delete m_indices;
 }

@@ -6,6 +6,7 @@ project(engine VERSION 0.1.0)
 
 set(HEADER_DIR "${CMAKE_SOURCE_DIR}/include")
 set(LIB_DIR "${CMAKE_SOURCE_DIR}/lib")
+set(DATA_DIR "${CMAKE_SOURCE_DIR}/Data")
 
 file(GLOB_RECURSE SourceList 
 	${CMAKE_SOURCE_DIR}/src/*.cpp
@@ -20,10 +21,15 @@ file(GLOB_RECURSE LibraryList
 	${LIB_DIR}/*.a
 	${LIB_DIR}/*.dll
 )
+file(GLOB_RECURSE DataFiles 
+	${DATA_DIR}/*.*
+)
 
 include_directories(
 	${HEADER_DIR}
 )
+
+file(COPY "${CMAKE_SOURCE_DIR}/Data" DESTINATION ${CMAKE_BINARY_DIR})
 
 add_executable(${CMAKE_PROJECT_NAME} main.cpp ${SourceList} ${HeaderList})
 

@@ -3,13 +3,12 @@
 #include <glm/glm.hpp>
 
 class ShapeComponent{
-private:
+public:
     float* m_vertices;
     int* m_indices;
     int m_indexCount;
     int m_vertexCount;
-public:
+    ShapeComponent(){}
     ShapeComponent(float*,  int, int*, int);
-    void GenAndBindBuffers(unsigned int* vbo, unsigned int* vao, unsigned int* ebo);
     ~ShapeComponent();
 };

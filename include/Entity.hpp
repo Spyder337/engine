@@ -1,7 +1,8 @@
 #include <Common.hpp>
-#include <Rendering/RenderComponent.hpp>
+#include <Components/RenderComponent.hpp>
 
 struct Entity{
+    uint32_t id = 0;
     Transform transform;
     RenderComponent renderer;
 };

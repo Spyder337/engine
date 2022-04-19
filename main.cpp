@@ -1,6 +1,6 @@
 #include <iostream>
 #include <string>
-#include <Rendering/GameWindow.hpp>
+#include <GameWindow.hpp>
 
 using namespace std;
 

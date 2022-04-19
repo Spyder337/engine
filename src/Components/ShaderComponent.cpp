@@ -1,4 +1,4 @@
-#include <Rendering/Shader.hpp>
+#include <Components/ShaderComponent.hpp>
 #include <iostream>
 
 using namespace std;
@@ -31,6 +31,9 @@ ShaderComponent::ShaderComponent(string vertPath, string fragPath){
     
     auto code = ReadShaderFile(vertPath, fragPath);
 
+    // cout << code[0] << endl;
+     cout << code[1] << endl;
+
     const char* vShaderCode = code[0].c_str();
     const char * fShaderCode = code[1].c_str();
 
@@ -53,6 +56,10 @@ ShaderComponent::ShaderComponent(string vertPath, string fragPath){
     glLinkProgram(m_handle);
     checkCompileErrors(m_handle, "PROGRAM");
 
+    glUseProgram(m_handle);
+
+    glDetachShader(m_handle, vertex);
+    glDetachShader(m_handle, fragment);
     glDeleteShader(vertex);
     glDeleteShader(fragment);
 }
